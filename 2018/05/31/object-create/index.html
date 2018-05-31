@@ -3,8 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | zengxin&#39;s blog</title>
+  <title>zengxin&#39;s blog</title>
   <meta name="author" content="zeng xin">
+  
+  <meta name="description" content="javascript中对象的创建
+ 1. 使用Object构造函数
+上代码123456789var person = new Object();person.name = &amp;quot;zhangsan&amp;quot;;person.age = 20;person.job = &amp;quot;engineer">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -112,17 +116,34 @@
 		<div class="content">
 			<!-- index -->
 		   
-			  	<h2>归档</h2>
-		  		
-	              <p class="archive-item">
-						<a href="/2018/05/31/object-create/" class="archive-title"></a><span class="archive post-time">2018-05-31</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/05/31/hello-world/" class="archive-title">Hello World</a><span class="archive post-time">2018-05-31</span>
-					</p>
-			  	
-			  <!-- post -->
+
+			  		<h2></h2>
+					
+					<div>
+						<span class="post-time">2018-05-31 21:14:46</span>
+					</div>	
+					
+
+					<div class="article-content">
+						<h1 id="javascript中对象的创建"><a href="#javascript中对象的创建" class="headerlink" title="javascript中对象的创建"></a>javascript中对象的创建</h1><hr>
+<p> <strong>1. 使用Object构造函数</strong></p>
+<p>上代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var person = new Object();</span><br><span class="line">person.name = &quot;zhangsan&quot;;</span><br><span class="line">person.age = 20;</span><br><span class="line">person.job = &quot;engineer&quot;;</span><br><span class="line">person.sayName = function ()&#123;</span><br><span class="line">	console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line">person.sayName();				// zhangsan</span><br><span class="line">console.log(typeof Object);		// &quot;function&quot;</span><br></pre></td></tr></table></figure></p>
+<p>这里我们通过Object构造函数，创建了一个person对象，这个对象也叫做Object的实例，并为它添加了三个属性(name，age，job)和一个方法(sayname)。由于Object是一个构造函数，所以typeof  Object的返回值是 “function”；</p>
+<hr>
+<p> <strong>2. 通过对象字面量的方式</strong></p>
+<blockquote>
+<p>对象字面量是对象定义的一种简写形式，目的在于简化创建包含大量属性的对象的过程</p>
+</blockquote>
+<p>上代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var man = &#123;</span><br><span class="line">	name : &quot;lisi&quot;,</span><br><span class="line">	age : 22,</span><br><span class="line">	job : &quot;teacher&quot;,</span><br><span class="line">	5 : true,</span><br><span class="line">	true : &quot;yes&quot;,</span><br><span class="line">	sayName : function ()&#123;</span><br><span class="line">		console.log(this.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个例子中的person对象与前面例子中的person对象是一样的，都是Object的实例，这里给man对象新增了两个属性( “5”  和  “true” ) ；值得注意的是，对象的所有属性都会自动转换为字符串，我们通过 for   in 循环验证下；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(var prop in man)&#123;</span><br><span class="line">		console.log(typeof prop);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531210010861?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjM1NzA0OA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>我们可以看到控制台打印了6个string</p>
+<hr>
+
+					</div>
+
+			  <!-- about -->
 			  
 		</div>
 
@@ -131,6 +152,8 @@
 
 		<div class="comment-section">
   
+  
+
 
 </div>
 	</div>
