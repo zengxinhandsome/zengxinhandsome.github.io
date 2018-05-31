@@ -3,17 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>zengxin&#39;s blog</title>
+  <title>javascript中对象的创建 | zengxin&#39;s blog</title>
   <meta name="author" content="zeng xin">
   
-  <meta name="description" content="javascript中对象的创建
- 1. 使用Object构造函数
-上代码123456789var person = new Object();person.name = &amp;quot;zhangsan&amp;quot;;person.age = 20;person.job = &amp;quot;engineer">
+  <meta name="description" content="1. 使用Object构造函数
+上代码123456789var person = new Object();person.name = &amp;quot;zhangsan&amp;quot;;person.age = 20;person.job = &amp;quot;engineer&amp;quot;;person.sayN">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="javascript中对象的创建"/>
   <meta property="og:site_name" content="zengxin&#39;s blog"/>
 
   
@@ -117,7 +116,7 @@
 			<!-- index -->
 		   
 
-			  		<h2></h2>
+			  		<h2>javascript中对象的创建</h2>
 					
 					<div>
 						<span class="post-time">2018-05-31 21:14:46</span>
@@ -125,8 +124,7 @@
 					
 
 					<div class="article-content">
-						<h1 id="javascript中对象的创建"><a href="#javascript中对象的创建" class="headerlink" title="javascript中对象的创建"></a>javascript中对象的创建</h1><hr>
-<p> <strong>1. 使用Object构造函数</strong></p>
+						<p> <strong>1. 使用Object构造函数</strong></p>
 <p>上代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var person = new Object();</span><br><span class="line">person.name = &quot;zhangsan&quot;;</span><br><span class="line">person.age = 20;</span><br><span class="line">person.job = &quot;engineer&quot;;</span><br><span class="line">person.sayName = function ()&#123;</span><br><span class="line">	console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line">person.sayName();				// zhangsan</span><br><span class="line">console.log(typeof Object);		// &quot;function&quot;</span><br></pre></td></tr></table></figure></p>
 <p>这里我们通过Object构造函数，创建了一个person对象，这个对象也叫做Object的实例，并为它添加了三个属性(name，age，job)和一个方法(sayname)。由于Object是一个构造函数，所以typeof  Object的返回值是 “function”；</p>
 <hr>
