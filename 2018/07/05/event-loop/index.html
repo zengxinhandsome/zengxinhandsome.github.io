@@ -149,7 +149,7 @@ H5提出了实现多线程的方案: Web Workers   ---&gt;Worker
 只能是主线程更新界面
 </code></pre><h1 id="3-定时器问题"><a href="#3-定时器问题" class="headerlink" title="3. 定时器问题:"></a>3. 定时器问题:</h1><pre><code>定时器并不真正完全定时
 如果在主线程执行了一个长时间的操作, 可能导致延时才处理
-</code></pre><h1 id="4-事件处理机制"><a href="#4-事件处理机制" class="headerlink" title="4. 事件处理机制"></a>4. 事件处理机制</h1><p><img src="http://i.imgur.com/sKxdHu9.png" alt="事件循环"></p>
+</code></pre><h1 id="4-事件处理机制"><a href="#4-事件处理机制" class="headerlink" title="4. 事件处理机制"></a>4. 事件处理机制</h1><p><img src="https://img-blog.csdn.net/2018030721323780?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYnVyeV8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="事件循环"></p>
 <h2 id="1-代码分类"><a href="#1-代码分类" class="headerlink" title="1). 代码分类"></a>1). 代码分类</h2><pre><code>初始化执行代码: 包含绑定dom事件监听, 设置定时器, 发送ajax请求的代码
 回调执行代码: 处理回调逻辑
 </code></pre><h2 id="2-js引擎执行代码的基本流程"><a href="#2-js引擎执行代码的基本流程" class="headerlink" title="2). js引擎执行代码的基本流程:"></a>2). js引擎执行代码的基本流程:</h2><pre><code>初始化代码===&gt;回调代码
