@@ -229,7 +229,8 @@
 <li>触发touchstart (多根手指在屏幕上，提起一根，会刷新一次全局touch)  </li>
 <li>弹起第一根手指，触发 touchend </li>
 </ul>
-<p>DOM2.0 模型将事件处理流程分为三个阶段，即 事件捕获阶段、事件处理阶段、事件冒泡阶段，如图所示：<br><img src="http://m.qpic.cn/psb?/V13dfEAG0AlRzz/3M*OsE8W4xWd*ytxmE*JXO*cQ.qZEHzZXiCljn0w3cY!/b/dDIBAAAAAAAA&amp;bo=cgIgAXICIAEDGTw!&amp;rf=viewer_4" alt="这里写图片描述"><br>1.<strong>事件捕获</strong>：当用户触发点击事件后，顶层对象 document 就会发出一个事件流，从最外层的 DOM 节点向目标元素节点传递，最终到达目标元素。<br>2.<strong>事件处理</strong>：当到达目标元素之后，执行目标元素绑定的处理函数。如果没有绑定监听函数，则不做任何处理。<br>3.<strong>事件冒泡</strong>：事件流从目标元素开始，向最外层DOM节点传递，途中如果有节点绑定了事件处理函数，这些函数就会被执行。<br>利用事件冒泡原理可以实现 “事件委托”。</p>
+<p>DOM2.0 模型将事件处理流程分为三个阶段，即 事件捕获阶段、事件处理阶段、事件冒泡阶段，如图所示：<br><img src="https://images2015.cnblogs.com/blog/849589/201707/849589-20170717000913191-1337916484.png" alt="这里写图片描述"></p>
+<p>1.<strong>事件捕获</strong>：当用户触发点击事件后，顶层对象 document 就会发出一个事件流，从最外层的 DOM 节点向目标元素节点传递，最终到达目标元素。<br>2.<strong>事件处理</strong>：当到达目标元素之后，执行目标元素绑定的处理函数。如果没有绑定监听函数，则不做任何处理。<br>3.<strong>事件冒泡</strong>：事件流从目标元素开始，向最外层DOM节点传递，途中如果有节点绑定了事件处理函数，这些函数就会被执行。<br>利用事件冒泡原理可以实现 “事件委托”。</p>
 <p>所谓事件委托，就是在父元素上添加事件监听器，用以监听和处理子元素的事件，避免重复为子元素绑定相同的事件。当目标元素的事件被触发以后，这个事件就从目标元素开始，向最外层元素传递，最终冒泡到父元素上，父元素再通过 event.target 获取到这个目标元素，这样做的好处是，父元素只需绑定一个事件监听，就可以对所有子元素的事件进行处理了，从而减少了不必要的事件绑定，对页面性能有一定的提升。</p>
 <h2 id="4、HTML-渲染流程"><a href="#4、HTML-渲染流程" class="headerlink" title="4、HTML 渲染流程"></a>4、HTML 渲染流程</h2><p>渲染引擎一开始会从网络层获取请求文档的内容，内容的大小一般限制在 8000 个块以内。</p>
 <p>然后进行如下所示的基本流程：<br><img src="http://r.photo.store.qq.com/psb?/V13dfEAG0AlRzz/4iolomaSFYVNof4ghHnACIoGZqKHTteQXuIXFgxxOBI!/r/dDABAAAAAAAA" alt="这里写图片描述"></p>

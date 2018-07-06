@@ -3,13 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2018 | zengxin&#39;s blog</title>
+  <title>关于javascript中对象的理解 | zengxin&#39;s blog</title>
   <meta name="author" content="zeng xin">
+  
+  <meta name="description" content="1. 对象的创建模式1). Object构造函数模式var obj = {}
+obj.name = &amp;apos;Tom&amp;apos;
+obj.setName = function(name){this.name=name}
+2). 对象字面量模式var obj = {
+    name : &amp;apos">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="关于javascript中对象的理解"/>
   <meta property="og:site_name" content="zengxin&#39;s blog"/>
 
   
@@ -112,45 +118,65 @@
 		<div class="content">
 			<!-- index -->
 		   
-			  	<h2>归档</h2>
-		  		
-	              <p class="archive-item">
-						<a href="/2018/07/05/02_函数高级/" class="archive-title">关于javascript中函数的理解</a><span class="archive post-time">2018-07-05</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/07/05/03_对象高级/" class="archive-title">关于javascript中对象的理解</a><span class="archive post-time">2018-07-05</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/07/05/js-basic/" class="archive-title">javascript基础知识</a><span class="archive post-time">2018-07-05</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/07/05/event-loop/" class="archive-title">js线程机制与事件机制</a><span class="archive post-time">2018-07-05</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/30/web-study/" class="archive-title">Web前端知识体系精简</a><span class="archive post-time">2018-06-30</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/07/css-border/" class="archive-title">css冷门知识：关于border属性的默认颜色</a><span class="archive post-time">2018-06-07</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/01/publish-article/" class="archive-title">如何发表文章到hexo搭建的个人博客上</a><span class="archive post-time">2018-06-01</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/05/31/object-create/" class="archive-title">javascript中对象的创建</a><span class="archive post-time">2018-05-31</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/05/31/hello-world/" class="archive-title">Hello World</a><span class="archive post-time">2018-05-31</span>
-					</p>
-			  	
-			  <!-- post -->
+
+			  		<h2>关于javascript中对象的理解</h2>
+					
+					<div>
+						<span class="post-time">2018-07-05 21:29:43</span>
+					</div>	
+					
+
+					<div class="article-content">
+						<h1 id="1-对象的创建模式"><a href="#1-对象的创建模式" class="headerlink" title="1. 对象的创建模式"></a>1. 对象的创建模式</h1><h2 id="1-Object构造函数模式"><a href="#1-Object构造函数模式" class="headerlink" title="1). Object构造函数模式"></a>1). Object构造函数模式</h2><pre><code>var obj = {}
+obj.name = &apos;Tom&apos;
+obj.setName = function(name){this.name=name}
+</code></pre><h2 id="2-对象字面量模式"><a href="#2-对象字面量模式" class="headerlink" title="2). 对象字面量模式"></a>2). 对象字面量模式</h2><pre><code>var obj = {
+    name : &apos;Tom&apos;,
+    setName : function(name){this.name = name}
+}
+</code></pre><h2 id="3-构造函数模式"><a href="#3-构造函数模式" class="headerlink" title="3). 构造函数模式"></a>3). 构造函数模式</h2><pre><code>function Person(name, age) {
+    this.name = name
+    this.age = age
+    this.setName = function(name){this.name=name}
+}
+new Person(&apos;tom&apos;, 12)
+</code></pre><h2 id="4-构造函数-原型的组合模式"><a href="#4-构造函数-原型的组合模式" class="headerlink" title="4). 构造函数+原型的组合模式"></a>4). 构造函数+原型的组合模式</h2><pre><code>function Person(name, age) {
+    this.name = name
+    this.age = age
+}
+Person.prototype.setName = function(name){this.name=name}
+new Person(&apos;tom&apos;, 12)
+</code></pre><h1 id="2-继承模式"><a href="#2-继承模式" class="headerlink" title="2. 继承模式"></a>2. 继承模式</h1><h2 id="1-原型链继承-得到方法"><a href="#1-原型链继承-得到方法" class="headerlink" title="1). 原型链继承 : 得到方法"></a>1). 原型链继承 : 得到方法</h2><pre><code>function Parent(){}
+Parent.prototype.test = function(){}
+function Child(){}
+Child.prototype = new Parent() //子类原型指向父类的实例
+Child.prototype.constructor = Child //原型的构造器指向构造函数
+var child = new Child() 
+child.test() //调用父类型的方法
+</code></pre><h2 id="2-借用构造函数-得到属性"><a href="#2-借用构造函数-得到属性" class="headerlink" title="2). 借用构造函数 : 得到属性"></a>2). 借用构造函数 : 得到属性</h2><pre><code>function Parent(xxx){this.xxx = xxx}
+Parent.prototype.test = function(){}
+function Child(xxx,yyy){
+  Parent.call(this, xxx) //借用父类型的构造函数 相当于:this.Parent(xxx)
+}
+var child = new Child(&apos;a&apos;, &apos;b&apos;)  //child.xxx为&apos;a&apos;, 但child没有test()
+</code></pre><h2 id="3-组合"><a href="#3-组合" class="headerlink" title="3). 组合"></a>3). 组合</h2><pre><code>function Parent(xxx){this.xxx = xxx}
+Parent.prototype.test = function(){}
+function Child(xxx,yyy){
+  Parent.call(this, xxx) //借用构造函数   this.Parent(xxx)
+}
+Child.prototype = new Parent() //得到test()
+Child.proptotype.constructor = Child
+var child = new Child() //child.xxx为&apos;a&apos;, 也有test()
+</code></pre><h1 id="3-理解"><a href="#3-理解" class="headerlink" title="3. 理解"></a>3. 理解</h1><h2 id="1-定义一个函数背后做了什么"><a href="#1-定义一个函数背后做了什么" class="headerlink" title="1). 定义一个函数背后做了什么?"></a>1). 定义一个函数背后做了什么?</h2><pre><code>创建一个Function的实例对象
+给对象添加prototype属性, 其值为object空对象(原型对象)
+给原型对象添加constructor属性, 指向当前函数对象
+</code></pre><h2 id="2-new一个对象背后做了些什么"><a href="#2-new一个对象背后做了些什么" class="headerlink" title="2). new一个对象背后做了些什么?"></a>2). new一个对象背后做了些什么?</h2><pre><code>创建一个新的空对象
+给对象设置__proto__, 值为构造函数对象的prototype属性值
+通过对象执行构造函数体(给对象添加属性/方法)
+</code></pre>
+					</div>
+
+			  <!-- about -->
 			  
 		</div>
 
@@ -159,6 +185,8 @@
 
 		<div class="comment-section">
   
+  
+
 
 </div>
 	</div>

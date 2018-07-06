@@ -3,13 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2018 | zengxin&#39;s blog</title>
+  <title>js线程机制与事件机制 | zengxin&#39;s blog</title>
   <meta name="author" content="zeng xin">
+  
+  <meta name="description" content="1. 线程与进程1). 进程:程序的一次执行, 它占有一片独有的内存空间
+可以通过windows任务管理器查看进程
+2). 线程:是进程内的一个独立执行单元
+是程序执行的一个完整流程
+是CPU的最小的调度单元
+3). 关系一个进程至少有一个线程(主)
+程序是在某个进程中的某个线程执行的
+2. 浏览器">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="js线程机制与事件机制"/>
   <meta property="og:site_name" content="zengxin&#39;s blog"/>
 
   
@@ -112,45 +121,47 @@
 		<div class="content">
 			<!-- index -->
 		   
-			  	<h2>归档</h2>
-		  		
-	              <p class="archive-item">
-						<a href="/2018/07/05/02_函数高级/" class="archive-title">关于javascript中函数的理解</a><span class="archive post-time">2018-07-05</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/07/05/03_对象高级/" class="archive-title">关于javascript中对象的理解</a><span class="archive post-time">2018-07-05</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/07/05/js-basic/" class="archive-title">javascript基础知识</a><span class="archive post-time">2018-07-05</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/07/05/event-loop/" class="archive-title">js线程机制与事件机制</a><span class="archive post-time">2018-07-05</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/30/web-study/" class="archive-title">Web前端知识体系精简</a><span class="archive post-time">2018-06-30</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/07/css-border/" class="archive-title">css冷门知识：关于border属性的默认颜色</a><span class="archive post-time">2018-06-07</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/01/publish-article/" class="archive-title">如何发表文章到hexo搭建的个人博客上</a><span class="archive post-time">2018-06-01</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/05/31/object-create/" class="archive-title">javascript中对象的创建</a><span class="archive post-time">2018-05-31</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/05/31/hello-world/" class="archive-title">Hello World</a><span class="archive post-time">2018-05-31</span>
-					</p>
-			  	
-			  <!-- post -->
+
+			  		<h2>js线程机制与事件机制</h2>
+					
+					<div>
+						<span class="post-time">2018-07-05 21:29:43</span>
+					</div>	
+					
+
+					<div class="article-content">
+						<h1 id="1-线程与进程"><a href="#1-线程与进程" class="headerlink" title="1. 线程与进程"></a>1. 线程与进程</h1><h2 id="1-进程"><a href="#1-进程" class="headerlink" title="1). 进程:"></a>1). 进程:</h2><pre><code>程序的一次执行, 它占有一片独有的内存空间
+可以通过windows任务管理器查看进程
+</code></pre><h2 id="2-线程"><a href="#2-线程" class="headerlink" title="2). 线程:"></a>2). 线程:</h2><pre><code>是进程内的一个独立执行单元
+是程序执行的一个完整流程
+是CPU的最小的调度单元
+</code></pre><h2 id="3-关系"><a href="#3-关系" class="headerlink" title="3). 关系"></a>3). 关系</h2><pre><code>一个进程至少有一个线程(主)
+程序是在某个进程中的某个线程执行的
+</code></pre><h1 id="2-浏览器内核模块组成"><a href="#2-浏览器内核模块组成" class="headerlink" title="2. 浏览器内核模块组成"></a>2. 浏览器内核模块组成</h1><h2 id="1-主线程"><a href="#1-主线程" class="headerlink" title="1). 主线程"></a>1). 主线程</h2><pre><code>js引擎模块 : 负责js程序的编译与运行
+html,css文档解析模块 : 负责页面文本的解析
+DOM/CSS模块 : 负责dom/css在内存中的相关处理 
+布局和渲染模块 : 负责页面的布局和效果的绘制(内存中的对象)
+</code></pre><h2 id="2-分线程"><a href="#2-分线程" class="headerlink" title="2). 分线程"></a>2). 分线程</h2><pre><code>定时器模块 : 负责定时器的管理
+事件响应模块 : 负责事件的管理
+网络请求模块 : 负责Ajax请求
+</code></pre><h2 id="3-js线程"><a href="#3-js线程" class="headerlink" title="3). js线程"></a>3). js线程</h2><pre><code>js是单线程执行的(回调函数也是在主线程)
+H5提出了实现多线程的方案: Web Workers   ---&gt;Worker
+只能是主线程更新界面
+</code></pre><h1 id="3-定时器问题"><a href="#3-定时器问题" class="headerlink" title="3. 定时器问题:"></a>3. 定时器问题:</h1><pre><code>定时器并不真正完全定时
+如果在主线程执行了一个长时间的操作, 可能导致延时才处理
+</code></pre><h1 id="4-事件处理机制"><a href="#4-事件处理机制" class="headerlink" title="4. 事件处理机制"></a>4. 事件处理机制</h1><p><img src="http://i.imgur.com/sKxdHu9.png" alt="事件循环"></p>
+<h2 id="1-代码分类"><a href="#1-代码分类" class="headerlink" title="1). 代码分类"></a>1). 代码分类</h2><pre><code>初始化执行代码: 包含绑定dom事件监听, 设置定时器, 发送ajax请求的代码
+回调执行代码: 处理回调逻辑
+</code></pre><h2 id="2-js引擎执行代码的基本流程"><a href="#2-js引擎执行代码的基本流程" class="headerlink" title="2). js引擎执行代码的基本流程:"></a>2). js引擎执行代码的基本流程:</h2><pre><code>初始化代码===&gt;回调代码
+</code></pre><h2 id="3-模型的2个重要组成部分"><a href="#3-模型的2个重要组成部分" class="headerlink" title="3). 模型的2个重要组成部分:"></a>3). 模型的2个重要组成部分:</h2><pre><code>事件管理模块
+回调队列
+</code></pre><h2 id="4-模型的运转流程"><a href="#4-模型的运转流程" class="headerlink" title="4). 模型的运转流程"></a>4). 模型的运转流程</h2><pre><code>执行初始化代码, 将事件回调函数交给对应模块管理
+当事件发生时, 管理模块会将回调函数及其数据添加到回调列队中
+只有当初始化代码执行完后(可能要一定时间), 才会遍历读取回调队列中的回调函数执行
+</code></pre>
+					</div>
+
+			  <!-- about -->
 			  
 		</div>
 
@@ -159,6 +170,8 @@
 
 		<div class="comment-section">
   
+  
+
 
 </div>
 	</div>
